@@ -26,7 +26,8 @@ public class DbConnector {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String SELECT_CITY="select * from city where Name=(?);";
     private static final String SELECT_CITIES="select Name from city where CountryCode=(?);";
-    private static final String UPDATE="update city set Name=(?),District=(?),Population=(?) where Name=(?);";
+    private static final String UPDATE="update city set Name=(?),District=(?),Population=(?) where ID=(?);";
+    private static int Id;
     private static String name;
     private static String countryCode;
     private static int population;
@@ -61,13 +62,13 @@ public class DbConnector {
                 PreparedStatement pstmt=conn.prepareStatement(SELECT_CITY);
             PreparedStatement pstmt2=conn.prepareStatement(SELECT_CITIES);){
             pstmt.setString(1, nome);
-            name=nome;
             ResultSet rs=pstmt.executeQuery();
             rs.next();
+            Id=rs.getInt("ID");
             countryCode=rs.getString("CountryCode");
             population=rs.getInt("Population");
             district=rs.getString("District");
-            System.out.println(district);
+            System.out.println(Id);
             pstmt2.setString(1, countryCode);
             rs=pstmt2.executeQuery();
             while(rs.next()){
@@ -86,8 +87,8 @@ public class DbConnector {
             pstmt.setString(1,nome);
             pstmt.setString(2,district);
             pstmt.setInt(3, population);
-            pstmt.setString(4,name);
-            pstmt.executeQuery();
+            pstmt.setInt(4,Id);
+            pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DbConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
