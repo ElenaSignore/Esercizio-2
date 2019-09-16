@@ -30,8 +30,8 @@ public class Esercizio2Controller {
     @RequestParam(name="nome", required=true,defaultValue="")String nome, Model model){
         String nomeCitta= nome;
         model.addAttribute("cittaSelezionata", nomeCitta);
-        model.addAttribute("distretto",DbConnector.getDistrict());
-        model.addAttribute("popolazione",DbConnector.getPopulation());
+        model.addAttribute("distrettoSelezionato",DbConnector.getDistrict());
+        model.addAttribute("popolazioneSelezionata",DbConnector.getPopulation());
         ArrayList<String> citta=DbConnector.getCitta();
         model.addAttribute("modCitta", citta);
         
