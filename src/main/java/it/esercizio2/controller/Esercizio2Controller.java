@@ -37,4 +37,20 @@ public class Esercizio2Controller {
         return "modificaCitta";
     }
     
+    @GetMapping("/risultato")
+    public String risultato(
+            @RequestParam(name="nome", required=true,defaultValue="")String nome,
+            @RequestParam(name="distretto", required=true,defaultValue="")String distretto,
+            @RequestParam(name="popolazione", required=true,defaultValue="")String popolazione,
+            Model model){
+           
+            int popolazioneUp= Integer.parseInt(popolazione);
+            
+            DbConnector.update(nome, distretto, popolazioneUp);
+        
+            return "risultato";
+        }
+    
+
+    
 }
