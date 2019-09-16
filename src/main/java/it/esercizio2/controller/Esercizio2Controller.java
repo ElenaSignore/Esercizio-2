@@ -29,12 +29,11 @@ public class Esercizio2Controller {
     public String modificaCitta(
     @RequestParam(name="nome", required=true,defaultValue="")String nome, Model model){
         String nomeCitta= nome;
+        ArrayList<String> citta=DbConnector.getCitta(nome);
         model.addAttribute("cittaSelezionata", nomeCitta);
-        model.addAttribute("distretto",DbConnector.getDistrict());
-        model.addAttribute("popolazione",DbConnector.getPopulation());
-        ArrayList<String> citta=DbConnector.getCitta();
+        model.addAttribute("distrettoSelezionato",DbConnector.getDistrict());
+        model.addAttribute("popolazioneselezionata",DbConnector.getPopulation());
         model.addAttribute("modCitta", citta);
-        
         return "modificaCitta";
     }
     
