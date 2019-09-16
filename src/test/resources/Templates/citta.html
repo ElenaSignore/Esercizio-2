@@ -7,6 +7,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<form th:action="@{modificaCitta}"></form>
+	<form th:action="@{/modificaCitta}" method="get">
+	
+			<ul>
+						<h1>Inserisci la Città</h1>
+						<input type="text" name="nome" placeholder="xes. Roma">
+			 </ul>
+						<input type="submit" value="Invio">
+	</form>
 </body>
 </html>
