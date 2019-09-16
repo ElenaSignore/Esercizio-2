@@ -60,9 +60,11 @@ public class DbConnector {
             PreparedStatement pstmt2=conn.prepareStatement(SELECT_CITIES);){
             pstmt.setString(1, nome);
             ResultSet rs=pstmt.executeQuery();
+            rs.next();
             countryCode=rs.getString("CountryCode");
             population=rs.getInt("Population");
             district=rs.getString("District");
+            System.out.println(district);
             pstmt2.setString(1, countryCode);
             rs=pstmt2.executeQuery();
             while(rs.next()){
@@ -75,19 +77,4 @@ public class DbConnector {
     return citta;
 }
     
-    public static ArrayList<String> getCitta(){
-        ArrayList<String> citta= new ArrayList();
-            try(Connection conn=connetti();
-                PreparedStatement pstmt=conn.prepareStatement(SELECT_CITIES);){
-            ResultSet rs=pstmt.executeQuery();
-            while(rs.next()){
-                citta.add(rs.getString("Name"));
-                
-            }
-        
-    }   catch (SQLException ex) {
-            Logger.getLogger(DbConnector.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    return citta;
-}
 }
