@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form th:action="@{/risultato}" method="get">
-	<h1>Città Selezionata</h1>
+	<h1>Citt&aacute Selezionata</h1>
 			<ul>
 					<!--  <span th:each="modcit :${modCitta}"></span> -->
 						<input type="text" name="nome" th:placeholder="${cittaSelezionata}">
@@ -19,7 +19,7 @@
 	</form>
 	
 	<table>
-	<tr th:each="modcit :${modCitta}"><td></td>
+	<tr th:each="modcit :${modCitta}"><td th:text="${modcit}"></td>
 </table>
 
 </body>
